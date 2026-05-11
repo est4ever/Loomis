@@ -4,20 +4,30 @@ function Node({
   title,
   subtitle,
   icon: Icon,
+  compact = false,
 }: {
   title: string;
   subtitle: string;
   icon: LucideIcon;
+  compact?: boolean;
 }) {
+  const subtitleClass = compact
+    ? "rounded-full border border-line bg-[#0a0f1a] px-2.5 py-1 font-mono text-[11px] text-slate-200"
+    : "rounded-full border border-line bg-[#0a0f1a] px-2 py-1 font-mono text-[10px] text-slate-400";
+  const titleClass = compact ? "mt-3 text-sm font-semibold text-white" : "mt-3 text-sm font-semibold text-slate-100";
+  const wrapperClass = compact ? "rounded-xl border border-line bg-[#0d1320] p-4 shadow-glow min-h-[88px]" : "rounded-xl border border-line bg-[#0d1320] p-4 shadow-glow";
+
   return (
-    <article className="rounded-xl border border-line bg-[#0d1320] p-4 shadow-glow">
-      <div className="flex items-start justify-between gap-3">
-        <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-accent/35 bg-accent/10 text-accent">
-          <Icon size={16} />
+    <article className={wrapperClass}>
+      <div className="flex items-start gap-3">
+        <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/35 bg-accent/10 text-accent">
+          <Icon size={compact ? 17 : 16} />
         </div>
-        <span className="rounded-full border border-line bg-[#0a0f1a] px-2 py-1 font-mono text-[10px] text-slate-400">{subtitle}</span>
+        <div className="min-w-0">
+          <p className={compact ? "text-sm font-semibold text-white" : titleClass}>{title}</p>
+          <span className={`${subtitleClass} mt-1 inline-flex`}>{subtitle}</span>
+        </div>
       </div>
-      <p className="mt-3 text-sm font-semibold text-slate-100">{title}</p>
     </article>
   );
 }
@@ -59,10 +69,10 @@ export function ArchitectureDiagram({ compact = false }: { compact?: boolean }) 
         </p>
       )}
       <div className={`mt-6 grid gap-4 ${compact ? "grid-cols-2" : "md:grid-cols-2 xl:grid-cols-4"}`}>
-        <Node title="Browser App Shell" subtitle="localhost:5173" icon={Globe} />
-        <Node title="HTTP API" subtitle="localhost:8000/v1" icon={Server} />
-        <Node title="Backend Runtime" subtitle="npu_wrapper / external" icon={Cpu} />
-        <Node title="Terminal CLI" subtitle="npu_cli.ps1" icon={TerminalSquare} />
+        <Node title="Browser App Shell" subtitle="localhost:5173" icon={Globe} compact={compact} />
+        <Node title="HTTP API" subtitle="localhost:8000/v1" icon={Server} compact={compact} />
+        <Node title="Backend Runtime" subtitle="npu_wrapper / external" icon={Cpu} compact={compact} />
+        <Node title="Terminal CLI" subtitle="npu_cli.ps1" icon={TerminalSquare} compact={compact} />
       </div>
       {!compact && (
         <svg viewBox="0 0 1000 210" className="mt-6 w-full" aria-label="AcouLM data flow diagram">
