@@ -445,7 +445,7 @@ AcouLM
   acoulm chat         Same as default
   acoulm start        Start API + localhost:5173 control panel (no terminal chat)
   acoulm status       GET /v1/cli/status from default API
-  acoulm <npu args>   Forward to npu_cli.ps1
+  acoulm [npu args]   Forward to npu_cli.ps1
 
   Default acoulm (no arguments) starts the control panel (:5173) + API like acoulm start, then opens terminal chat (hidden service consoles).
   UI without terminal chat: acoulm start  or  .\start_app.ps1 -OpenBrowser
