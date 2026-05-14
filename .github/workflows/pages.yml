@@ -28,7 +28,7 @@ jobs:
           # Intentionally no npm cache config to avoid lockfile-path errors.
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           enablement: true
 
