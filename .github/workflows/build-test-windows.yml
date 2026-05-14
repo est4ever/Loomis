@@ -106,14 +106,14 @@ jobs:
           .\smoke_api.ps1 -ApiBase "http://127.0.0.1:8000" -Model "${env:ACOULM_SMOKE_MODEL}"
 
       - name: Upload dist artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: acoulm-dist-windows-x64
           path: dist
           if-no-files-found: error
 
       - name: Upload sbom artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: acoulm-sbom
           path: sbom
